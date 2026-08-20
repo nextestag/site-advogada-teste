@@ -126,6 +126,8 @@
             color: #666;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
 </head>
 
 <body>
@@ -143,33 +145,35 @@
             Entre com seus dados para acessar sua área de atendimento.
         </p>
 
-        <form>
+        <form id="loginForm">
 
-            <div class="campo">
-                <label for="email">E-mail</label>
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Digite seu e-mail"
-                    required
-                >
-            </div>
+    <div class="campo">
+        <label for="email">E-mail</label>
+        <input
+            type="email"
+            id="email"
+            placeholder="Digite seu e-mail"
+            required
+        >
+    </div>
 
-            <div class="campo">
-                <label for="senha">Senha</label>
-                <input
-                    type="password"
-                    id="senha"
-                    placeholder="Digite sua senha"
-                    required
-                >
-            </div>
+    <div class="campo">
+        <label for="senha">Senha</label>
+        <input
+            type="password"
+            id="senha"
+            placeholder="Digite sua senha"
+            required
+        >
+    </div>
 
-            <button type="submit" class="btn-entrar">
-                ENTRAR
-            </button>
+    <button type="submit" class="btn-entrar">
+        ENTRAR
+    </button>
 
-        </form>
+</form>
+
+<p id="mensagem" style="text-align:center; margin-top:15px; font-size:14px;"></p>
 
         <a href="index.html" class="voltar">
             ← Voltar para o site
@@ -180,6 +184,45 @@
         </div>
 
     </main>
+<script>
+    const SUPABASE_URL = "https://ollrvkoktspdpbbzhfps.supabase.co/rest/v1/";
+    const SUPABASE_KEY = "sb_publishable_mh10MJ_Zj_Jh_r7HppnsxA_XAYZ_BXv";
 
+    const { createClient } = supabase;
+
+    const supabaseClient = createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+    const loginForm = document.getElementById("loginForm");
+    const mensagem = document.getElementById("mensagem");
+
+    loginForm.addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const senha = document.getElementById("senha").value;
+
+        mensagem.textContent = "Entrando...";
+
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: senha
+        });
+
+        if (error) {
+            mensagem.textContent = "E-mail ou senha incorretos.";
+            mensagem.style.color = "#b00020";
+            return;
+        }
+
+        mensagem.textContent = "Login realizado com sucesso!";
+        mensagem.style.color = "green";
+
+        // Por enquanto, vamos apenas testar o login.
+        // Depois vamos criar a página da área do cliente.
+    });
+</script>
 </body>
 </html>
