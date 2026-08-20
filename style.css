@@ -1302,3 +1302,21 @@ select {
         box-sizing: border-box;
     }
 }
+/* ÁREA DO CLIENTE */
+.btn-client-area {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 14px 28px;
+    background-color: #0d1b2a;
+    color: #ffffff;
+    text-decoration: none;
+    border: 2px solid #b99655;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn-client-area:hover {
+    background-color: #b99655;
+    color: #0d1b2a;
+}
