@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Área do Cliente | Dra. Vitória Cardoso</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #0d1b2a;
+            min-height: 100vh;
+        }
+
+        .topo {
+            background: #0d1b2a;
+            color: white;
+            padding: 22px;
+            text-align: center;
+            border-bottom: 3px solid #b99655;
+        }
+
+        .topo h1 {
+            font-size: 25px;
+            margin-bottom: 6px;
+        }
+
+        .topo p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .login-container {
+            width: 90%;
+            max-width: 430px;
+            margin: 55px auto;
+            background: white;
+            padding: 35px 28px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #0d1b2a;
+        }
+
+        .descricao {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        .campo {
+            margin-bottom: 18px;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .campo input:focus {
+            border-color: #b99655;
+        }
+
+        .btn-entrar {
+            width: 100%;
+            padding: 14px;
+            background: #b99655;
+            color: #0d1b2a;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .btn-entrar:hover {
+            opacity: 0.9;
+        }
+
+        .voltar {
+            display: block;
+            text-align: center;
+            margin-top: 22px;
+            color: #0d1b2a;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .voltar:hover {
+            color: #b99655;
+        }
+
+        .aviso {
+            margin-top: 25px;
+            padding: 12px;
+            background: #f8f8f8;
+            border-left: 3px solid #b99655;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="topo">
+        <h1>Dra. Vitória Cardoso</h1>
+        <p>Área do Cliente</p>
+    </header>
+
+    <main class="login-container">
+
+        <h2>Acesse sua área</h2>
+
+        <p class="descricao">
+            Entre com seus dados para acessar sua área de atendimento.
+        </p>
+
+        <form>
+
+            <div class="campo">
+                <label for="email">E-mail</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Digite seu e-mail"
+                    required
+                >
+            </div>
+
+            <div class="campo">
+                <label for="senha">Senha</label>
+                <input
+                    type="password"
+                    id="senha"
+                    placeholder="Digite sua senha"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="btn-entrar">
+                ENTRAR
+            </button>
+
+        </form>
+
+        <a href="index.html" class="voltar">
+            ← Voltar para o site
+        </a>
+
+        <div class="aviso">
+            Esta área é destinada exclusivamente aos clientes da Dra. Vitória Cardoso.
+        </div>
+
+    </main>
+
+</body>
+</html>
