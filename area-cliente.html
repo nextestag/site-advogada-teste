@@ -212,7 +212,7 @@
         });
 
         if (error) {
-            mensagem.textContent = "E-mail ou senha incorretos.";
+            mensagem.textContent = error.message;
             mensagem.style.color = "#b00020";
             return;
         }
