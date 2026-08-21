@@ -218,10 +218,11 @@
         }
 
         mensagem.textContent = "Login realizado com sucesso!";
-        mensagem.style.color = "green";
+mensagem.style.color = "green";
 
-        // Por enquanto, vamos apenas testar o login.
-        // Depois vamos criar a página da área do cliente.
+setTimeout(() => {
+    window.location.href = "cliente.html";
+}, 500);
     });
 </script>
 </body>
