@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Área do Cliente | Dra. Vitória Cardoso</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #0d1b2a;
+            min-height: 100vh;
+        }
+
+        .topo {
+            background: #0d1b2a;
+            color: white;
+            padding: 22px;
+            text-align: center;
+            border-bottom: 3px solid #b99655;
+        }
+
+        .topo h1 {
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+
+        .topo p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 35px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            color: #0d1b2a;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .status {
+            padding: 15px;
+            background: #f8f8f8;
+            border-left: 4px solid #b99655;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        .info {
+            margin-top: 10px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .btn-sair {
+            width: 100%;
+            padding: 14px;
+            background: #0d1b2a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .btn-sair:hover {
+            opacity: 0.9;
+        }
+
+        .voltar {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #0d1b2a;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .voltar:hover {
+            color: #b99655;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="topo">
+        <h1>Dra. Vitória Cardoso</h1>
+        <p>Área do Cliente</p>
+    </header>
+
+    <main class="container">
+
+        <div class="card">
+            <h2>Bem-vindo à sua área</h2>
+
+            <p class="info">
+                Você está conectado com sucesso.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>Meu atendimento</h2>
+
+            <div class="status">
+                <strong>Status:</strong> Aguardando atendimento.
+                <br><br>
+                <strong>Posição na fila:</strong> Em breve.
+                <br><br>
+                <strong>Data:</strong> A definir.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Informações</h2>
+
+            <p class="info">
+                Nesta área você poderá acompanhar as informações
+                relacionadas ao seu atendimento com a Dra. Vitória Cardoso.
+            </p>
+        </div>
+
+        <button class="btn-sair" id="btnSair">
+            SAIR DA CONTA
+        </button>
+
+        <a href="index.html" class="voltar">
+            ← Voltar para o site
+        </a>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        const SUPABASE_URL ="https://ollrvkoktspdpbbzhfps.supabase.co/rest/v1/";
+        const SUPABASE_KEY ="sb_publishable_mh10MJ_Zj_Jh_r7HppnsxA_XAYZ_BXv";
+
+        const { createClient } = supabase;
+
+        const supabaseClient = createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+        async function verificarLogin() {
+
+            const { data: { session } } =
+                await supabaseClient.auth.getSession();
+
+            if (!session) {
+                window.location.href = "area-cliente.html";
+            }
+        }
+
+        verificarLogin();
+
+        document.getElementById("btnSair").addEventListener("click", async function() {
+
+            await supabaseClient.auth.signOut();
+
+            window.location.href = "area-cliente.html";
+        });
+    </script>
+
+</body>
+</html>
