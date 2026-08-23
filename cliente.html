@@ -169,7 +169,8 @@
             SUPABASE_KEY
         );
 
-        async function verificarLogin() {
+        
+async function verificarLogin() {
 
     const { data: { session } } =
         await supabaseClient.auth.getSession();
@@ -179,11 +180,49 @@
         return;
     }
 
+    // Mostra o e-mail do cliente
     const email = session.user.email;
 
     document.getElementById("emailCliente").textContent = email;
-}
 
+    // Busca o atendimento desse cliente
+    const { data: atendimento, error } =
+        await supabaseClient
+            .from("atendimentos")
+            .select("*")
+            .eq("user_id", session.user.id)
+            .maybeSingle();
+
+    if (error) {
+        console.error("Erro ao buscar atendimento:", error);
+        return;
+    }
+
+    // Se ainda não existe atendimento
+    if (!atendimento) {
+        console.log("Nenhum atendimento encontrado para este cliente.");
+        return;
+    }
+
+    // Preenche as informações do atendimento
+    document.getElementById("statusCliente").textContent =
+        atendimento.status || "Aguardando";
+
+    document.getElementById("posicaoCliente").textContent =
+        atendimento.posicao || "A definir";
+
+    document.getElementById("assuntoCliente").textContent =
+        atendimento.assunto || "A definir";
+
+    document.getElementById("dataCliente").textContent =
+        atendimento.data_atendimento || "A definir";
+
+    document.getElementById("horarioCliente").textContent =
+        atendimento.horario || "A definir";
+
+    document.getElementById("observacaoCliente").textContent =
+        atendimento.observacao || "Nenhuma observação";
+}
         verificarLogin();
 
         document.getElementById("btnSair").addEventListener("click", async function() {
