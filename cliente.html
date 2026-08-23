@@ -115,9 +115,14 @@
         <div class="card">
             <h2>Bem-vindo à sua área</h2>
 
-            <p class="info">
-                Você está conectado com sucesso.
-            </p>
+<p class="info">
+    Você está conectado com sucesso.
+</p>
+
+<p class="info">
+    <strong>E-mail:</strong>
+    <span id="emailCliente">Carregando...</span>
+</p>
         </div>
 
         <div class="card">
@@ -166,13 +171,18 @@
 
         async function verificarLogin() {
 
-            const { data: { session } } =
-                await supabaseClient.auth.getSession();
+    const { data: { session } } =
+        await supabaseClient.auth.getSession();
 
-            if (!session) {
-                window.location.href = "area-cliente.html";
-            }
-        }
+    if (!session) {
+        window.location.href = "area-cliente.html";
+        return;
+    }
+
+    const email = session.user.email;
+
+    document.getElementById("emailCliente").textContent = email;
+}
 
         verificarLogin();
 
